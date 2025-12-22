@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdf6e3;
+  --foreground: #433422;
+  --warm-tan: #e6ccb2;
+  --light-wood: #ddb892;
+  --medium-wood: #b08968;
+  --sage-green: #94a684;
+  --pale-salmon: #f3a683;
+  --soft-white: #fffcf2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-warm-tan: var(--warm-tan);
+  --color-light-wood: var(--light-wood);
+  --color-medium-wood: var(--medium-wood);
+  --color-sage-green: var(--sage-green);
+  --color-pale-salmon: var(--pale-salmon);
+  --color-soft-white: var(--soft-white);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.neo-border {
+  border: 3px solid #433422;
+  border-radius: 2rem;
+}
+
+.neo-shadow {
+  box-shadow: 6px 6px 0px 0px #433422;
+}
+
+.neo-shadow-sm {
+  box-shadow: 3px 3px 0px 0px #433422;
+}
+
+.neo-card {
+  border: 3px solid #433422;
+  border-radius: 3rem;
+  box-shadow: 6px 6px 0px 0px #433422;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-card:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.neo-button {
+  border: 3px solid #433422;
+  border-radius: 1.5rem;
+  box-shadow: 3px 3px 0px 0px #433422;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.neo-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: #433422;
 }

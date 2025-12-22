@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Bracket Challenge 🏆
+
+A fun and interactive double-elimination bracket competition to help you discover which careers interest you most! Compare 128 different jobs head-to-head in a tournament-style experience.
+
+## Features
+
+- **128-Job Tournament**: A comprehensive list of jobs across various industries.
+- **Neo-Brutalism Design**: A bold, high-contrast UI for a modern feel.
+- **Double Elimination**: Each job gets two chances before being eliminated - fair and comprehensive
+- **Winners & Losers Brackets**: Jobs that lose in the main bracket get another shot in the losers bracket
+- **Interactive UI**: Beautiful, responsive design with smooth animations
+- **Track Progress**: See your completion percentage and remaining jobs in real-time
+- **Personalized Results**: Get your top 5 job preferences ranked by your choices
+
+## How It Works
+
+1. **Start Tournament**: Click to begin your career exploration journey
+2. **Compare Jobs**: You'll be presented with two jobs at a time - choose the one that interests you more
+3. **Progress Through Rounds**: Continue making choices as jobs advance through the bracket
+4. **Second Chances**: Jobs that lose once move to the losers bracket for a second opportunity
+5. **See Results**: Once complete, view your top 5 career preferences based on your selections
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Runtime**: React 19
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ and npm
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd job-bracket
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to start the tournament!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── layout.tsx         # Root layout with metadata
+│   └── page.tsx           # Main tournament page
+├── components/
+│   ├── JobCard.tsx        # Individual job display card
+│   ├── MatchView.tsx      # Head-to-head comparison view
+│   ├── ProgressBar.tsx    # Tournament progress tracker
+│   ├── MBTISelector.tsx   # Myers-Briggs selection UI with summaries
+│   └── Results.tsx        # Final results display with MBTI context
+├── data/
+│   └── jobs.ts            # 300+ job catalog with Myers-Briggs metadata
+├── lib/
+│   └── bracketLogic.ts    # Tournament management and MBTI-based curation
+└── types/
+    └── bracket.ts         # TypeScript type definitions
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding Your Own Jobs
 
-## Deploy on Vercel
+Edit `src/data/jobs.ts` to customize the list of jobs. Each job requires:
+- `id`: Unique number
+- `title`: Job name
+- `description`: Brief description
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app uses Tailwind CSS. Modify component styles directly in the TSX files or update `tailwind.config.ts` for global theme changes.
+
+## Development Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Run production server
+npm run lint     # Run ESLint
+```
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+---
+
+Built with ❤️ using Next.js and TypeScript
