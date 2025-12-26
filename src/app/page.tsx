@@ -6,6 +6,7 @@ import { BracketState } from "@/types/bracket";
 import {
   initializeBracket,
   selectWinner,
+  undoSelection,
   getBracketProgress,
 } from "@/lib/bracketLogic";
 import MatchView from "@/components/MatchView";
@@ -35,6 +36,13 @@ export default function Home() {
     }
   };
 
+  const handleUndo = () => {
+    if (bracketState) {
+      const newState = undoSelection(bracketState);
+      setBracketState(newState);
+    }
+  };
+
   const handleRestart = () => {
     setBracketState(null);
     setIsStarted(false);
@@ -49,8 +57,8 @@ export default function Home() {
           </h1>
           <p className="text-2xl font-bold mb-8">
             Discover your ideal career through a fun tournament! Compare 128 different
-            jobs head-to-head in a double-elimination bracket. Each job gets two
-            chances before being eliminated.
+            jobs head-to-head in a double-elimination bracket to find your top 5.
+            Each job gets two chances before being eliminated.
           </p>
           <button
             onClick={startBracket}
@@ -67,26 +75,9 @@ export default function Home() {
   const isComplete = !bracketState.currentMatch;
 
   if (isComplete) {
-    // Get top jobs based on how far they made it
-    const winnerMatches = bracketState.matches.filter((m) => m.winner);
-    const jobWinCounts = new Map<number, number>();
-
-    winnerMatches.forEach((match) => {
-      if (match.winner) {
-        const count = jobWinCounts.get(match.winner.id) || 0;
-        jobWinCounts.set(match.winner.id, count + 1);
-      }
-    });
-
-    const topJobs = Array.from(jobWinCounts.entries())
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5)
-      .map(([jobId]) => jobs.find((j) => j.id === jobId)!)
-      .filter(Boolean);
-
     return (
       <div className="min-h-screen bg-warm-tan p-8">
-        <Results topJobs={topJobs} onRestart={handleRestart} />
+        <Results topJobs={bracketState.winners} onRestart={handleRestart} />
       </div>
     );
   }
@@ -98,12 +89,22 @@ export default function Home() {
           <h1 className="text-6xl neo-title">
             Job Bracket
           </h1>
-          <button
-            onClick={handleRestart}
-            className="neo-button bg-soft-white text-sm py-2 px-4"
-          >
-            Restart
-          </button>
+          <div className="flex gap-4">
+            {bracketState.history.length > 0 && (
+              <button
+                onClick={handleUndo}
+                className="neo-button bg-warm-tan text-sm py-2 px-4"
+              >
+                Undo
+              </button>
+            )}
+            <button
+              onClick={handleRestart}
+              className="neo-button bg-soft-white text-sm py-2 px-4"
+            >
+              Restart
+            </button>
+          </div>
         </div>
 
         <ProgressBar

@@ -1,6 +1,6 @@
 # Job Bracket - Project Instructions
 
-This is a double-elimination bracket competition web app for comparing 64 jobs/occupations per run, curated from a 300+ job catalog with Myers-Briggs personalization.
+This is a double-elimination bracket competition web app for comparing 128 jobs/occupations in a tournament-style bracket.
 
 ## Project Type
 - Framework: Next.js with TypeScript
@@ -28,11 +28,10 @@ This is a double-elimination bracket competition web app for comparing 64 jobs/o
 The Job Bracket Challenge app is ready! The development server is running at http://localhost:3000
 
 ### Key Files Created:
-- `src/app/page.tsx` - Main tournament interface with MBTI onboarding flow
-- `src/data/jobs.ts` - 300+ job catalog with MBTI metadata
-- `src/lib/bracketLogic.ts` - Tournament logic and MBTI-based curation
-- `src/components/MBTISelector.tsx` - Myers-Briggs selection UI
+- `src/app/page.tsx` - Main tournament interface
+- `src/data/jobs.ts` - 128 job catalog
+- `src/lib/bracketLogic.ts` - Double-elimination bracket tournament logic
 - `src/components/JobCard.tsx` - Job display card
 - `src/components/MatchView.tsx` - Match comparison view
 - `src/components/ProgressBar.tsx` - Progress tracking
-- `src/components/Results.tsx` - Final results display with MBTI summary
+- `src/components/Results.tsx` - Final results display with top 5 jobs

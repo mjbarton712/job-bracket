@@ -13,6 +13,10 @@ export interface Match {
 export interface BracketState {
   matches: Match[];
   currentMatch: Match | null;
-  completedJobs: Set<number>; // Jobs eliminated twice
-  losersQueue: Job[]; // Jobs that lost once, waiting for losers bracket
+  completedJobs: Set<number>; // Jobs eliminated after their second loss
+  lossCounts: Map<number, number>; // Tracks number of losses per job
+  eliminationOrder: Job[]; // Jobs in the order they were eliminated
+  history: BracketState[]; // For undo functionality
+  winners: Job[]; // Top 5 jobs at the end
+  placements: Map<number, number>; // Maps job ID to placement (1-5 for top 5)
 }
